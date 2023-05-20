@@ -1,46 +1,41 @@
 import logo from "./logo.svg";
 import "./App.css";
-import Typograhy from "@mui/material/Typography";
-import {
-  Button,
-  ButtonGroup,
-  IconButton,
-  Stack,
-  ToggleButton,
-  ToggleButtonGroup,
-} from "@mui/material";
-import FacebookIcon from "@mui/icons-material/Facebook";
-import FormatBoldIcon from "@mui/icons-material/FormatBold";
-import FormatItalicIcon from "@mui/icons-material/FormatItalic";
-import FormatColorTextIcon from "@mui/icons-material/FormatColorText";
+import {Box,TextField,MenuItem, autocompleteClasses} from '@mui/material';
 import { useState } from "react";
-
 function App() {
-  const [format, setFormat] = useState([]);
-  const onHandleChange = (event, selectedItems) => {
-    // both the parameters are by default given by the MUI component ToggleButtonGroup
-    console.log(selectedItems);
-    setFormat(selectedItems);
-  };
+  const [contries,setCountries] = useState([]);
+  const onHandleCountriesSelect = (event) => {
+    // console.log(event);
+    setCountries(event.target.value);
+    // setCountries(event);
+  }
   return (
-    <div className="App">
-      <ToggleButtonGroup
-        color="success"
-        onChange={onHandleChange}
-        value={format}
-        sx={{ mt: 100 }}
-      >
-        {/* NOTE: value property is mandatory for all the elements inside the toggleButton, it is used to identify the item uniquely*/}
-        <ToggleButton value="bold">
-          <FormatBoldIcon />
-        </ToggleButton>
-        <ToggleButton value="italics">
-          <FormatItalicIcon />
-        </ToggleButton>
-        <ToggleButton value="underline">
-          <FormatColorTextIcon />
-        </ToggleButton>
-      </ToggleButtonGroup>
+    // Basic Drop down select menu
+    <div className="App" style={{padding:'20% 40%'}} >
+      <Box width="300px" mt={10}  >
+        <TextField
+          label='Select Your Country'
+          select
+          value={contries}
+          onChange={onHandleCountriesSelect}
+          color="success"
+          fullWidth
+          helperText="Please select your country"
+          SelectProps={{
+            multiple:true,
+          }}
+        >
+          {/* <MenuItem value ="IN" onClick={()=>onHandleCountriesSelect('IN')}>INDIA</MenuItem>
+          <MenuItem value ="DU" onClick={()=>onHandleCountriesSelect('DU')}>DUBAI</MenuItem>
+          <MenuItem value ="RU" onClick={()=>onHandleCountriesSelect('RU')}>RUSSIA</MenuItem>
+          <MenuItem value ="US" onClick={()=>onHandleCountriesSelect('US')}>USA</MenuItem> */}
+
+          <MenuItem value ="IN" >INDIA</MenuItem>
+          <MenuItem value ="DU" >DUBAI</MenuItem>
+          <MenuItem value ="RU" >RUSSIA</MenuItem>
+          <MenuItem value ="US" >USA</MenuItem>
+        </TextField>
+      </Box>
     </div>
   );
 }
