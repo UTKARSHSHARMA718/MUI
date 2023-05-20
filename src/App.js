@@ -10,51 +10,37 @@ import {
   ToggleButtonGroup,
 } from "@mui/material";
 import FacebookIcon from "@mui/icons-material/Facebook";
-import FormatBoldIcon from '@mui/icons-material/FormatBold';
-import FormatItalicIcon from '@mui/icons-material/FormatItalic';
-import FormatColorTextIcon from '@mui/icons-material/FormatColorText';
+import FormatBoldIcon from "@mui/icons-material/FormatBold";
+import FormatItalicIcon from "@mui/icons-material/FormatItalic";
+import FormatColorTextIcon from "@mui/icons-material/FormatColorText";
 import { useState } from "react";
 
 function App() {
-  
+  const [format, setFormat] = useState([]);
+  const onHandleChange = (event, selectedItems) => {
+    // both the parameters are by default given by the MUI component ToggleButtonGroup
+    console.log(selectedItems);
+    setFormat(selectedItems);
+  };
   return (
     <div className="App">
-            
-      <Typograhy variant="h1" component="div" gutterBottom>
-        hello world1
-      </Typograhy>
-      <Typograhy variant="h1" component="div">
-        hello world2
-      </Typograhy>
-      <Stack
-        variant="text"
-        spacing={1}
-        mt={5}
-        mr={15}
-        ml={15}
-        direction="row"
-        justifyContent="space-between"
+      <ToggleButtonGroup
+        color="success"
+        onChange={onHandleChange}
+        value={format}
+        sx={{ mt: 100 }}
       >
-        <Button variant="text">text</Button>
-        <Button variant="contained" endIcon={<FacebookIcon/>}>Contained</Button>
-        <Button endIcon={<FacebookIcon />}>Contained</Button>
-        <Button startIcon={<FacebookIcon />}>outlined</Button>
-        <IconButton color="success" size="large" aria-label="send">
-          <FacebookIcon />
-          <FacebookIcon />
-          <FacebookIcon />
-          <FacebookIcon />
-        </IconButton>
-      </Stack>
-
-      <ButtonGroup orientation="vertical" size='large' color="success" variant="contained">
-        <Button>Left</Button>
-        <Button>Center</Button>
-        <Button>Right</Button>
-      </ButtonGroup>
-
-
-
+        {/* NOTE: value property is mandatory for all the elements inside the toggleButton, it is used to identify the item uniquely*/}
+        <ToggleButton value="bold">
+          <FormatBoldIcon />
+        </ToggleButton>
+        <ToggleButton value="italics">
+          <FormatItalicIcon />
+        </ToggleButton>
+        <ToggleButton value="underline">
+          <FormatColorTextIcon />
+        </ToggleButton>
+      </ToggleButtonGroup>
     </div>
   );
 }
