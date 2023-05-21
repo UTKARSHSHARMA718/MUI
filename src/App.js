@@ -1,12 +1,12 @@
-
 import "./App.css";
-import { useState } from "react";
+import CheckBoxContainer from "./Components/CheckBoxContainer";
 import RadioMenu from "./Components/RadioMenu";
 function App() {
-  
   return (
-    <div className="App" style={{padding:'20% 40%'}} >
-      <RadioMenu/>
+    <div className="App" style={{ padding: "20% 40%" }}>
+      <h1>Hello World</h1>
+      <CheckBoxContainer/>
+      {/* <RadioMenu/> */}
     </div>
   );
 }
